@@ -5,6 +5,8 @@
 
 <h1 align="center">MUI Core</h1>
 
+**INFO 443 Project 2**: Justin Zeng, Sachi Figliolini, Jasper Wang, Laren Wong
+
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
 - [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
