@@ -135,8 +135,10 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
         return { gap: getValue(transformer, propValue) };
       }
       return {
-        '& > :not(style) + :not(style)': {
+        '& > :not(style)': {
           margin: 0,
+        },
+        '& > :not(style) + :not(style)':{
           [`margin${getSideFromDirection(
             breakpoint ? directionValues[breakpoint] : ownerState.direction,
           )}`]: getValue(transformer, propValue),
