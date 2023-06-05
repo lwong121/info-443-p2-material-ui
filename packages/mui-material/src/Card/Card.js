@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import Paper from '../Paper';
+import { styled } from '@mui/system';
+import { Paper } from '@mui/material';
 import { getCardUtilityClass } from './cardClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -18,17 +17,11 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getCardUtilityClass, classes);
 };
 
-const CardRoot = styled(Paper, {
-  name: 'MuiCard',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})(() => {
-  return {
-    overflow: 'hidden',
-  };
-});
+const CardRoot = styled(Paper)(({ theme }) => ({
+  overflow: 'hidden',
+}));
 
-const Card = React.forwardRef(function Card(inProps, ref) {
+const Card = forwardRef(function Card(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiCard',
@@ -45,7 +38,6 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       className={clsx(classes.root, className)}
       elevation={raised ? 8 : undefined}
       ref={ref}
-      ownerState={ownerState}
       {...other}
     />
   );
