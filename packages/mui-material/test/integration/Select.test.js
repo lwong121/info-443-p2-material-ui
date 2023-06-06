@@ -59,6 +59,50 @@ describe('<Select> integration', () => {
       expect(trigger).toHaveFocus();
     });
 
+
+    test('renders Select with null default value without crashing', () => {
+      const { getByRole } = render(
+        <Select
+          defaultValue={null}
+          onChange={jest.fn()}
+        >
+          <MenuItem value="item1">Item 1</MenuItem>
+          <MenuItem value="item2">Item 2</MenuItem>
+        </Select>,
+      );
+
+      expect(getByRole('button')).toBeInTheDocument();
+    });
+
+   test('renders Select with null onChange handler without crashing', () => {
+    const { getByRole } = render(
+      <Select
+        defaultValue="item1"
+        onChange={null}
+      >
+        <MenuItem value="item1">Item 1</MenuItem>
+        <MenuItem value="item2">Item 2</MenuItem>
+      </Select>,
+    );
+
+    const selectComponent = getByRole('button');
+    fireEvent.mouseDown(selectComponent);
+    expect(selectComponent).toBeInTheDocument();
+  });
+
+  test('renders Select without any MenuItem children without crashing', () => {
+    const { getByRole } = render(
+      <Select
+        defaultValue="item1"
+        onChange={jest.fn()}
+      >
+      </Select>,
+    );
+
+    expect(getByRole('button')).toBeInTheDocument();
+  });
+
+
     it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
